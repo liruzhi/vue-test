@@ -1,7 +1,7 @@
 <template>
 <!--    模板里面必须有一个根元素-->
     <div>
-        <MyHeader></MyHeader>
+        <MyHeader :addTodo="addTodo"></MyHeader>
         <MyList :todos="todos" :checkTodo="checkTodo"></MyList>
         <MyFooter></MyFooter>
     </div>
@@ -31,6 +31,7 @@
         methods:{
             //添加一个todo
             addTodo(todoObj) {
+                console.log("我是App组件收到了：",todoObj)
                 this.todos.unshift(todoObj)
             },
             //取消勾选一个todo
