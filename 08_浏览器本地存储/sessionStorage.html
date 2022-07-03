@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sessionStorage</title>
+</head>
+<body>
+<!--会话，浏览器已关闭，数据就没了-->
+    <h2>sessionStorage</h2>
+    <button onclick="saveData()">点我保存一个数据</button>
+    <button onclick="readData()">点我读取一个数据</button>
+    <button onclick="deleteData()">点我删除一个数据</button>
+    <button onclick="deleteAllData()">点我清空数据</button>
+</body>
+
+<script type="text/javascript">
+    let p = {name:"张三",age:18}
+    function saveData() {
+        //key value 最终都是字符串类型
+        sessionStorage.setItem("msg", "hello!")
+        //存入之后，666会转化为string
+        sessionStorage.setItem("num", 666)
+
+        //默认会将p转化为string   p.toString()
+        sessionStorage.setItem("person", p)
+        sessionStorage.setItem("jsonPerson", JSON.stringify(p))
+    }
+    
+    function readData() {
+        console.log(sessionStorage.getItem("msg"))
+        console.log(sessionStorage.getItem("num"))
+        console.log(sessionStorage.getItem("jsonPerson"))
+        const result = sessionStorage.getItem("jsonPerson")
+        console.log(JSON.parse(result))
+
+        //获取一个不存在的key,结果是null
+        console.log(sessionStorage.getItem("xxxx"))
+    }
+    
+    function deleteData() {
+        sessionStorage.removeItem("num")
+    }
+
+    function deleteAllData() {
+        sessionStorage.clear()
+    }
+</script>
+</html>

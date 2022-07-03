@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage</title>
+</head>
+<body>
+<h2>localStorage</h2>
+<button onclick="saveData()">点我保存一个数据</button>
+<button onclick="readData()">点我读取一个数据</button>
+<button onclick="deleteData()">点我删除一个数据</button>
+<button onclick="deleteAllData()">点我清空数据</button>
+</body>
+
+<!--webStorage存储内容大小一般支持5MB左右（不同浏览器可能不同）-->
+<script type="text/javascript">
+    let p = {name:"张三",age:18}
+    function saveData() {
+        //key value 最终都是字符串类型
+        localStorage.setItem("msg", "hello!")
+        //存入之后，666会转化为string
+        localStorage.setItem("num", 666)
+
+        //默认会将p转化为string   p.toString()
+        localStorage.setItem("person", p)
+        localStorage.setItem("jsonPerson", JSON.stringify(p))
+    }
+
+    function readData() {
+        console.log(localStorage.getItem("msg"))
+        console.log(localStorage.getItem("num"))
+        console.log(localStorage.getItem("jsonPerson"))
+        const result = localStorage.getItem("jsonPerson")
+        console.log(JSON.parse(result))
+
+        //获取一个不存在的key,结果是null
+        console.log(localStorage.getItem("xxxx"))
+    }
+
+    function deleteData() {
+        localStorage.removeItem("num")
+    }
+
+    function deleteAllData() {
+        localStorage.clear()
+    }
+</script>
+</html>
