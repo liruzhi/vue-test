@@ -13,20 +13,24 @@
 </template>
 
 <script>
+    import pubsub from 'pubsub-js'
     export default {
         name:"MyItem",
         //声明接收todo对象
-        props:['todo', "checkTodo", "deleteTodo"],
+        props:['todo'],
         methods:{
             handleCheck(id) {
                 //通知App组件讲对应的todo对象的done值取反(数据在哪里，操作数据的方法就在哪里)
                 // console.log(id)
-                this.checkTodo(id)
+                // this.checkTodo(id)
+                this.$bus.$emit('checkTodo', id)//使用全局事件总线
             },
             handleDelete(id) {
                 if(confirm('确定删除吗？')) {
-                    this.deleteTodo(id)
-                    console.log(id)
+                    // this.deleteTodo(id)
+                    // this.$bus.$emit('deleteTodo', id)
+                    // console.log(id)
+                    pubsub.publish("deleteTodo", id)
                 }
             }
 
