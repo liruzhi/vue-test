@@ -301,3 +301,17 @@ https://api.github.com/search/users?q=xxxccc1986
 
 
 ![image-20220731223214830](README.assets/image-20220731223214830.png)
+
+## 108 搭建vuex环境
+
+```
+npm i vuex
+Vue.use(Vuex)
+store
+vc===>store
+
+
+vue2中，要用vuex的3版本  npm i vuex@3
+vue3中，要用vuex的4版本
+```
+
