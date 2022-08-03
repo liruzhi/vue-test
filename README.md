@@ -315,3 +315,24 @@ vue2中，要用vuex的3版本  npm i vuex@3
 vue3中，要用vuex的4版本
 ```
 
+
+
+## 117路由简介
+
+vue-router是vue的一个插件库，专门来实现SPA应用
+
+```
+npm i vue-router
+
+vue2中需要  npm i vue-router@3
+Vue.user()
+```
+
+### SPA
+
+- 单页Web应用(single page web application, SPA)
+- 整个应用只有一个完整页面
+- 点击页面中的导航链接不会刷新页面，只会做页面的局部刷新
+- 数据要通过ajax请求获取
+
+## 118路由基本使用
