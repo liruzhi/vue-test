@@ -26,17 +26,8 @@ export default new VueRouter({
                     component:Message,
                     children:[
                         {
-                            name:'xiangqing',
-                            // path:'detail',
-                            path:'detail/:id/:title',
+                            path:'detail',
                             component:Detail,
-                            //以props的方式传给Detail组件，基本上不使用，因为值是固定的
-                            // props:{
-                            //     a:1,
-                            //     b:"hello"
-                            // }
-                            //props的第二种，以props的形式传给Detail组件
-                            props:true,
                         },
                     ]
                 },

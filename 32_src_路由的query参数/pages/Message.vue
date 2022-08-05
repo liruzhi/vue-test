@@ -5,13 +5,10 @@
 <!--                <router-link to="/home/message/detail?id=m.id">{{m.title}}</router-link>-->
 <!--                字符串写法-->
 <!--                <router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">{{m.title}}</router-link>-->
-<!--                <router-link :to="`/home/message/detail/${m.id}/${m.title}`">{{m.title}}</router-link>-->
 <!--                对象写法,建议写法-->
                 <router-link :to="{
-                    //如果此处使用了params参数，则必须用name,不能用path
-                    name:'xiangqing',
-                    // path:'/home/message/detail',
-                    params:{
+                    path:'/home/message/detail',
+                    query:{
                         id:m.id,
                         title:m.title,
                     }
