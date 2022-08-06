@@ -339,3 +339,273 @@ Vue.user()
 
 ## 121路由传参
 
+## 125 router-link的replace属性
+
+- 作用:控制路由跳转时操作浏览器历史记录的模式
+
+- 浏览器的历史记录有两种写入方式：分别是push和replace，push是追加历史记录，replace是替换当前记录。路由跳转时候默认为push
+
+- 如何开启replace模式：`<router-link replace ....>News</router-link>`
+
+## 126编程式路由导航
+
+this.$router只有一份，所有人只能看到
+
+$this.$route每人一份，只能看到自己的
+
+
+
+## 127缓存路由组件
+
+- 作用：让不展示的了路由组件保持挂载，不被销毁
+- 具体编码
+
+```
+<keep-alive include="News">
+	<router-view></router-view>
+</keep-alive>
+```
+
+## 128路由组件独有的生命周期钩子
+
+- 路由组件所独有的两个钩子，用于捕获路由组件的激活状态
+
+```
+activated(){}   路由组件被激活时触发
+deactived(){}   路由组件失活时触发
+```
+
+## 129全局前置-路由守卫(比较重要，开发中用的比较多)
+
+路由守卫：保护路由的安全 ----权限相关
+
+## 133history模式与hash模式
+
+```
+history   /
+hash /#/   兼容性好
+```
+
+还涉及到项目上线的问题：
+
+上线之前需要打包，生成最纯粹的.html .css .js 文件 使用命令：
+
+```
+npm run build
+```
+
+
+
+node express
+
+- 新建demo文件夹
+- 进入demo文件夹，运行npm init   输入package name后  一路回车
+- npm i express
+
+```
+lrz@DESKTOP-LCVU4R0 MINGW64 ~/Desktop/demo
+$ npm init
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (demo) atguigu_test_server //输入名称，然后一路回车
+version: (1.0.0)
+
+
+....
+
+
+```
+
+```
+npm i express
+```
+
+编写一个express服务
+
+```
+const express = require('express')
+
+const app = express()
+
+app.use(express.static(__dirname+'/static'))
+
+app.get('/person',(req,res)=>{
+	res.send({
+		name:'tom',
+		age:18
+	})
+})
+
+app.listen(5005, (err)=>{
+	if(!err) console.log("服务器启动成功了")
+})
+```
+
+启动服务
+```
+node server
+```
+
+### 解决history模式下404的问题
+
+**一般上线部署时，大多使用history模式**
+
+npmjs.com
+
+connet-history-api-fallback
+
+```
+在demo服务器执行
+npm i connect-history-api-fallback
+```
+
+解决404问题   或者使用nginx解决。
+
+```
+const express = require('express')
+const history = require('connect-history-api-fallback')
+
+const app = express()
+
+app.use(history())
+app.use(express.static(__dirname+'/static'))
+
+app.get('/person',(req,res)=>{
+	res.send({
+		name:'tom',
+		age:18
+	})
+})
+
+app.listen(5005, (err)=>{ 
+	if(!err) console.log("服务器启动成功了")
+})
+```
+
+
+
+IE8及其以下浏览器，访问不了Vue写的项目
+
+
+
+## 134 element-ui基本使用
+
+### 移动端常用组件库
+
+- Vant https://youzan.github.io/vant
+- Cube UI https://didi.github.io/cube-ui
+- Mint UI http://mint-ui.github.io
+
+- nutui  https://nutui.jd.com/     京东团队
+
+### PC端常用UI组件库
+
+- Element UI https://element.eleme.io/#/zh-CN    饿了么团队
+- IView UI https://iview.github.io/
+
+不需要整理笔记，用的时候看文档即可
+
+
+
+```
+ ERROR  Error: Cannot find module 'babel-preset-es2015'
+        Require stack:
+```
+
+
+
+`npm i babel-preset-es201`
+
+
+
+```
+lrz@DESKTOP-LCVU4R0 MINGW64 ~/Desktop/vue_test (main)
+$ npm run serve
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+> vue_test@0.1.0 serve
+> vue-cli-service serve
+
+ ERROR  Error: Plugin/Preset files are not allowed to export objects, only functions. In C:\Users\lrz\Desktop\vue_test\node_modules\babel-preset-es2015\lib\index.js
+Error: Plugin/Preset files are not allowed to export objects, only functions. In C:\Users\lrz\Desktop\vue_test\node_modules\babel-preset-es2015\lib\index.js
+    at createDescriptor (C:\Users\lrz\Desktop\vue_test\node_modules\@babel\core\lib\config\config-descriptors.js:211:11)
+    at createDescriptor.next (<anonymous>)
+    at evaluateSync (C:\Users\lrz\Desktop\vue_test\node_modules\gensync\index.js:251:28)
+    at C:\Users\lrz\Desktop\vue_test\node_modules\gensync\index.js:31:34
+    at Array.map (<anonymous>)
+    at Function.sync (C:\Users\lrz\Desktop\vue_test\node_modules\gensync\index.js:31:22)
+    at Function.all (C:\Users\lrz\Desktop\vue_test\node_modules\gensync\index.js:210:24)
+    at Generator.next (<anonymous>)
+    at createDescriptors (C:\Users\lrz\Desktop\vue_test\node_modules\@babel\core\lib\config\config-descriptors.js:142:41)
+    at createDescriptors.next (<anonymous>)
+```
+
+
+
+出现上述问题，需要将代码：
+
+```
+//babel.config.js
+module.exports = {
+  presets: [
+    '@vue/cli-plugin-babel/preset',
+    ["es2015", { "modules": false }],
+  ],
+  plugins: [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ]
+}
+```
+
+改为：
+
+```
+module.exports = {
+  presets: [
+    '@vue/cli-plugin-babel/preset',
+    ["@babel/preset-env", { "modules": false }],
+  ],
+  plugins: [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ]
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+​    
+
+
+

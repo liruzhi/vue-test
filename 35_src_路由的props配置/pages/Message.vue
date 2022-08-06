@@ -19,10 +19,7 @@
                         id:m.id,
                         title:m.title,
                     }
-                }">{{m.title}}
-                </router-link>
-                <button @click="pushShow(m)">push查看</button>
-                <button @click="replaceShow(m)">replace查看</button>
+                }">{{m.title}}</router-link>
             </li>
         </ul>
         <hr>
@@ -42,28 +39,6 @@
                     {id:"003",title:"消息003"},
                 ]
             }
-        },
-        methods:{
-            pushShow(m){
-                // console.log(this.$router)
-                this.$router.push({
-                    name:'xiangqing',
-                    query:{
-                        id:m.id,
-                        title:m.title
-                    }
-                })
-            },
-            replaceShow(m){
-                // console.log(this.$router)
-                this.$router.replace({
-                    name:'xiangqing',
-                    query:{
-                        id:m.id,
-                        title:m.title
-                    }
-                })
-            },
         }
     }
 </script>

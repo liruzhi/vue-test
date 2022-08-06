@@ -9,7 +9,6 @@ import Detail from '../pages/Detail'
 //创建并暴露一个路由器
 // export default new VueRouter({
 const router = new VueRouter({
-    mode:'history',
     routes:[
         {
             name:"guanyu",

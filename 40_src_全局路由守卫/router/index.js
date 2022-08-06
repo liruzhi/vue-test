@@ -9,7 +9,6 @@ import Detail from '../pages/Detail'
 //创建并暴露一个路由器
 // export default new VueRouter({
 const router = new VueRouter({
-    mode:'history',
     routes:[
         {
             name:"guanyu",
@@ -32,15 +31,6 @@ const router = new VueRouter({
                 {
                     path:'news',
                     component:News,
-                    meta:{
-                        isAuth:false,
-                        title:'新闻'
-                    },
-                    beforeEnter:(to,from,next) => {
-                        console.log(to,from,next)
-                        //可以写一些权限校验，判断是否放行
-                        next()
-                    }
                 },
                 {
                     name:"xiaoxi",
@@ -84,27 +74,27 @@ const router = new VueRouter({
 })
 
 //全局前置路由守卫--初始化的时候被调用、每次路由切换之前被调用
-// router.beforeEach((to,from,next)=>{
-//     // if(to.path === '/home/news' || to.path === '/home/message') {
-//     if(to.meta.isAuth) {
-//         console.log("isAuth")
-//         //增加一些逻辑看是否应该放行
-//         if(localStorage.getItem('school') === 'atguigu') {
-//             next()//放行
-//         } else {
-//             next()//放行
-//         }
-//
-//     } else {
-//         next()//放行
-//     }
-//
-// })
-//
-// //全局后置路由守卫--初始化的时候被调用、每次路由切换之后被调用
-// router.afterEach((to,from)=>{
-//     document.title = to.meta.title || "vue-test"
-//     console.log(to,from)
-// })
+router.beforeEach((to,from,next)=>{
+    // if(to.path === '/home/news' || to.path === '/home/message') {
+    if(to.meta.isAuth) {
+        console.log("isAuth")
+        //增加一些逻辑看是否应该放行
+        if(localStorage.getItem('school') === 'atguigu') {
+            next()//放行
+        } else {
+            next()//放行
+        }
+
+    } else {
+        next()//放行
+    }
+
+})
+
+//全局后置路由守卫--初始化的时候被调用、每次路由切换之后被调用
+router.afterEach((to,from)=>{
+    document.title = to.meta.title || "vue-test"
+    console.log(to,from)
+})
 
 export default router
